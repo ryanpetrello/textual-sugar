@@ -4,6 +4,19 @@ var doc = document,
 // -- Sugar -------------------------------------------------------------------
 var Sugar;
 
+var emojiMap = {
+    ' :smile:':          ' &#x1f60a;',
+    ' :simple_smile:':   ' &#x1f60a;',
+    ' :smiley:':         ' &#x1f60a;',
+    ' :)':               ' &#x1f60a;',
+    ' :D':               ' &#x1f603;',
+    ' :grinning:':       ' &#x1f603;',
+    ' ;)':               ' &#x1f609;',
+    ' :wink:':           ' &#x1f609;',
+    ' :|':               ' &#x1f610;',
+    ' :neutral_face:':   ' &#x1f610;',
+};
+
 Sugar = {
     lineCache: {},
     playbackMode: false,
@@ -93,7 +106,13 @@ Sugar = {
                 msgEl.innerHTML = msgEl.innerHTML.replace(/^\s*\[\d\d:\d\d:\d\d\]/, '');
             }
         }
-    }
+        var msgEl = line.querySelector('.message');
+        for (var code in emojiMap) {
+            var emo = emojiMap[code];
+            msgEl.innerHTML = msgEl.innerHTML.replace(code, emo);
+        }
+    },
+
 };
 
 // -- Textual ------------------------------------------------------------------
